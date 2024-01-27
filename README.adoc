@@ -1,4 +1,13 @@
 = AmazingActivist
+:ci-url: https://github.com/ixti/amazing-activist/actions/workflows/ci.yml?query=branch%3Amain
+:ci-img: https://github.com/ixti/amazing-activist/actions/workflows/ci.yml/badge.svg?branch=main
+:codecov-url: https://codecov.io/gh/ixti/amazing-activist/tree/main
+:codecov-img: https://codecov.io/gh/ixti/amazing-activist/graph/badge.svg?token=LXaGWwv5xl
+
+ifdef::env-github[]
+{ci-url}[image:{ci-img}[CI]]
+{codecov-url}[image:{codecov-img}[codecov]]
+endif::[]
 
 == Installation
 
