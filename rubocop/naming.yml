@@ -1,0 +1,4 @@
+Naming/FileName:
+  Enabled: true
+  Exclude:
+    - "lib/amazing-activist.rb"

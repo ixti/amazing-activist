@@ -1,0 +1,76 @@
+= AmazingActivist
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+    $ bundle add amazing-activist
+
+Or install it yourself as:
+
+    $ gem install amazing-activist
+
+
+== Usage
+
+[source,ruby]
+----
+class ApplicationActivity < AmazingActivist::Activity
+end
+
+class OnboardingActivity < ApplicationActivity
+  def call
+    user = User.new(params)
+
+    return failure(:invalid_params, user: user) unless user.save
+
+    success(user)
+  end
+end
+
+class UsersController < ApplicationController
+  def create
+    case OnboardingActivity.call(**params.require(:user).permit(:password))
+    in success: user
+      redirect_to user_bashboard_url(user)
+    in failure: :invalid_params, context: { user: user }
+      @user = user
+      render :new
+    else
+      head :bad_request
+    end
+  end
+end
+----
+
+
+== Compatibility
+
+This library aims to support and is tested against:
+
+* https://www.ruby-lang.org[Ruby]
+** MRI 3.0.x
+** MRI 3.1.x
+** MRI 3.2.x
+** MRI 3.3.x
+
+If something doesn't work on one of these versions, it's a bug.
+
+This library may inadvertently work (or seem to work) on other Ruby versions,
+however support will only be provided for the versions listed above.
+
+
+== Development
+
+  bundle install
+  bundle exec rake
+
+
+== Contributing
+
+* Fork amazing-activist
+* Make your changes
+* Ensure all tests pass (`bundle exec rake`)
+* Send a merge request
+* If we like them we'll merge them
+* If we've accepted a patch, feel free to ask for commit access!

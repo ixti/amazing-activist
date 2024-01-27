@@ -1,0 +1,17 @@
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+inherit_from:
+  - rubocop/layout.yml
+  - rubocop/lint.yml
+  - rubocop/metrics.yml
+  - rubocop/naming.yml
+  - rubocop/performance.yml
+  - rubocop/rspec.yml
+  - rubocop/style.yml
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0

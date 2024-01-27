@@ -1,0 +1,6 @@
+--markup asciidoc
+--private
+--query '@api.text != "internal"'
+-
+CHANGELOG.md
+LICENSE.txt
