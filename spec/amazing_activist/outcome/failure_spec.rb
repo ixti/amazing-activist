@@ -57,5 +57,12 @@ RSpec.describe AmazingActivist::Outcome::Failure do
     subject { outcome.message }
 
     it { is_expected.to eq "#{activity.class} failed with #{code}" }
+
+    context "when failure context has :message" do
+      let(:outcome) { described_class.new(code, activity: activity, context: { message: message }) }
+      let(:message) { "You shall not pass!" }
+
+      it { is_expected.to eq message }
+    end
   end
 end

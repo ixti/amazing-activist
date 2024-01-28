@@ -56,7 +56,7 @@ module AmazingActivist
       end
 
       def message
-        "#{@activity.class} failed with #{@code}"
+        @context.fetch(:message) { "#{@activity.class} failed with #{@code}" }
       end
     end
   end
