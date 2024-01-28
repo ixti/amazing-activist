@@ -1,0 +1,8 @@
+en:
+  amazing_activist:
+    activities:
+      pretty/damn_good:
+        failures:
+          bad_choice: "Choose something else!"
+    failures:
+      you_shall_not_pass: "%{name}, get lost already!"

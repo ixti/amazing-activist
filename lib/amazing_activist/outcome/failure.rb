@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "../polyglot"
 require_relative "../unwrap_error"
 
 module AmazingActivist
@@ -56,7 +57,7 @@ module AmazingActivist
       end
 
       def message
-        @context.fetch(:message) { "#{@activity.class} failed with #{@code}" }
+        @context.fetch(:message) { Polyglot.new(@activity).message(@code, **context) }
       end
     end
   end

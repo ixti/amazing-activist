@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+RSpec.describe AmazingActivist::Polyglot do
+  subject(:polyglot) { described_class.new(activity) }
+
+  describe "#message" do
+    subject { polyglot.message(code, **failure_context) }
+
+    let(:locale)          { :en }
+    let(:code)            { :blablabla }
+    let(:failure_context) { {} }
+    let(:activity)        { Pretty::DamnGoodActivity.new }
+
+    around { |ex| I18n.with_locale(locale, &ex) }
+
+    it { is_expected.to eq "<pretty/damn_good> activity failed - blablabla" }
+
+    context "when activity class name has no Activity suffix" do
+      let(:activity) { AmazingActivist::Base.new }
+
+      it { is_expected.to eq "<amazing_activist/base> activity failed - blablabla" }
+    end
+
+    context "when activity class is anonymous" do
+      let(:activity) { Class.new(AmazingActivist::Base).new }
+
+      it { is_expected.to eq "<(anonymous)> activity failed - blablabla" }
+    end
+
+    context "when there's generic failure message for selected locale" do
+      let(:locale) { :gl }
+      let(:code)   { :not_implemented }
+
+      it { is_expected.to eq "<pretty/damn_good> actividade non ten implementación" }
+    end
+
+    context "when there's named failure message for given code" do
+      let(:code) { :bad_choice }
+
+      it { is_expected.to eq "Choose something else!" }
+    end
+  end
+end

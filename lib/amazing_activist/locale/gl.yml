@@ -1,0 +1,4 @@
+gl:
+  amazing_activist:
+    failures:
+      not_implemented: "<%{activity}> actividade non ten implementación"

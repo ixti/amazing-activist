@@ -1,21 +1,22 @@
 # frozen_string_literal: true
 
 RSpec.describe AmazingActivist::Outcome::Failure do
-  subject(:outcome) { described_class.new(code, activity: activity, context: { foo: :bar }) }
+  subject(:outcome) { described_class.new(code, activity: activity, context: failure_context) }
 
-  let(:code)     { :you_shall_not_pass }
-  let(:activity) { AmazingActivist::Base.new }
+  let(:code)            { :you_shall_not_pass }
+  let(:activity)        { AmazingActivist::Base.new }
+  let(:failure_context) { { name: "Barlog" } }
 
   describe "#deconstruct" do
     subject { outcome.deconstruct }
 
-    it { is_expected.to eq([:failure, code, activity, { foo: :bar }]) }
+    it { is_expected.to eq([:failure, code, activity, failure_context]) }
   end
 
   describe "#deconstruct_keys" do
     subject { outcome.deconstruct_keys(nil) }
 
-    it { is_expected.to eq({ failure: code, activity: activity, context: { foo: :bar } }) }
+    it { is_expected.to eq({ failure: code, activity: activity, context: failure_context }) }
   end
 
   describe "#success?" do
@@ -34,10 +35,7 @@ RSpec.describe AmazingActivist::Outcome::Failure do
     it "raises #{AmazingActivist::UnwrapError}" do
       expect { outcome.unwrap! }.to raise_error(
         an_instance_of(AmazingActivist::UnwrapError).and(
-          having_attributes(
-            failure: outcome,
-            message: "#{activity.class} failed with #{code}"
-          )
+          having_attributes(failure: outcome)
         )
       )
     end
@@ -54,9 +52,18 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   end
 
   describe "#message" do
-    subject { outcome.message }
+    subject(:message) { outcome.message }
 
-    it { is_expected.to eq "#{activity.class} failed with #{code}" }
+    it { is_expected.to eq "Barlog, get lost already!" }
+
+    it "generates message with Polyglot" do
+      polyglot = instance_double(AmazingActivist::Polyglot, message: "Nope!")
+      allow(AmazingActivist::Polyglot).to receive(:new).and_return(polyglot)
+
+      expect(message).to eq("Nope!")
+      expect(polyglot).to have_received(:message).with(code, **failure_context)
+      expect(AmazingActivist::Polyglot).to have_received(:new).with(activity)
+    end
 
     context "when failure context has :message" do
       let(:outcome) { described_class.new(code, activity: activity, context: { message: message }) }
