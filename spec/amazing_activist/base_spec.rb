@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe AmazingActivist::Activity do
+RSpec.describe AmazingActivist::Base do
   describe ".call" do
     it "is a syntax sugar for new(...).call" do
       activity = described_class.new

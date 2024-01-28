@@ -9,7 +9,7 @@ module AmazingActivist
   #
   # [source,ruby]
   # ----
-  # class OnboardActivity < AmazingActivist::Activity
+  # class OnboardActivity < AmazingActivist::Base
   #   def call
   #     user = User.new(params)
   #
@@ -19,7 +19,7 @@ module AmazingActivist
   #   end
   # end
   # ----
-  class Activity
+  class Base
     class << self
       # Convenience method to initialize and immediatelly call the activity.
       # @see #initialize
