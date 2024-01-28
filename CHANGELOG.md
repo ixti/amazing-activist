@@ -8,10 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-## [1.0.0.alpha.1] - 2024-01-27
+## [0.2.0] - 2024-01-28
+
+## Added
+
+- Generate default failure messages with
+  [i18n](https://github.com/ruby-i18n/i18n).
+
+
+## [0.1.0] - 2024-01-27
 
 ## Added
 
 - Initial release.
 
-[1.0.0.alpha.1]: https://github.com/ixti/sidekiq-antidote/tree/v1.0.0.alpha.1
+[0.1.0]: https://github.com/ixti/sidekiq-antidote/tree/v0.1.0
