@@ -4,7 +4,7 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   subject(:outcome) { described_class.new(code, activity: activity, context: failure_context) }
 
   let(:code)            { :you_shall_not_pass }
-  let(:activity)        { AmazingActivist::Base.new }
+  let(:activity)        { Pretty::DamnGoodActivity.new }
   let(:failure_context) { { name: "Barlog" } }
 
   describe "#deconstruct" do

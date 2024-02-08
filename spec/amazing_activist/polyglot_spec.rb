@@ -16,9 +16,9 @@ RSpec.describe AmazingActivist::Polyglot do
     it { is_expected.to eq "<pretty/damn_good> activity failed - blablabla" }
 
     context "when activity class name has no Activity suffix" do
-      let(:activity) { AmazingActivist::Base.new }
+      let(:activity) { Unconventional::ClassNaming.new }
 
-      it { is_expected.to eq "<amazing_activist/base> activity failed - blablabla" }
+      it { is_expected.to eq "<unconventional/class_naming> activity failed - blablabla" }
     end
 
     context "when activity class is anonymous" do

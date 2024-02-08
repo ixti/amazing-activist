@@ -4,7 +4,7 @@ RSpec.describe AmazingActivist::UnwrapError do
   subject(:error) { described_class.new(failure) }
 
   let(:failure)  { AmazingActivist::Outcome::Failure.new(:unknown, activity: activity, context: {}) }
-  let(:activity) { AmazingActivist::Base.new }
+  let(:activity) { Pretty::DamnGoodActivity.new }
 
   describe "#failure" do
     subject { error.failure }
