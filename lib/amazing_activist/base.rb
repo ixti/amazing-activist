@@ -18,6 +18,14 @@ module AmazingActivist
   #     failure(:invalid_params, user: user)
   #   end
   # end
+  #
+  # case OnboardActivity.call(email: "user@example.com")
+  # in success: user
+  #   Current.user = user
+  #   redirect_to dashboard_url
+  # else
+  #   render :new, status: :unprocessable_entity
+  # end
   # ----
   class Base
     class << self

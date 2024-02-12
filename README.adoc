@@ -24,7 +24,7 @@ Or install it yourself as:
 
 [source,ruby]
 ----
-class ApplicationActivity < AmazingActivist::Activity
+class ApplicationActivity < AmazingActivist::Base
 end
 
 class OnboardingActivity < ApplicationActivity
