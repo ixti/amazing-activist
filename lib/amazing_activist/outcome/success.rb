@@ -3,11 +3,11 @@
 module AmazingActivist
   module Outcome
     class Success
-      # @return [AmazingActivist::Activity]
+      # @return [AmazingActivist::Base]
       attr_reader :activity
 
       # @param value [Object]
-      # @param activity [AmazingActivist::Activity]
+      # @param activity [AmazingActivist::Base]
       def initialize(value, activity:)
         @value    = value
         @activity = activity
@@ -24,13 +24,13 @@ module AmazingActivist
       end
 
       # @api internal
-      # @return [Array<(:success, Object, AmazingActivist::Activity)>]
+      # @return [Array]
       def deconstruct
         [:success, @value, @activity]
       end
 
       # @api internal
-      # @return [Hash{success: Object, activity: AmazingActivist::Activity}]
+      # @return [Hash]
       def deconstruct_keys(_)
         { success: @value, activity: @activity }
       end

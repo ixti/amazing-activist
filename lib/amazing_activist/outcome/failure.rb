@@ -9,19 +9,26 @@ module AmazingActivist
       # @return [Symbol]
       attr_reader :code
 
-      # @return [AmazingActivist::Activity]
+      # @return [AmazingActivist::Base]
       attr_reader :activity
 
-      # @return [Hash{Symbol => Object}]
+      # @return [Exception, nil]
+      attr_reader :exception
+
+      # @return [Hash]
       attr_reader :context
 
       # @param code [#to_sym]
       # @param activity [AmazingActivist::Activity]
-      # @param context [Hash{Symbol => Object}]
-      def initialize(code, activity:, context:)
-        @code     = code.to_sym
-        @activity = activity
-        @context  = context
+      # @param message [#to_s, nil]
+      # @param exception [Exception, nil]
+      # @param context [Hash]
+      def initialize(code, activity:, message:, exception:, context:)
+        @code      = code.to_sym
+        @activity  = activity
+        @message   = message&.to_s
+        @exception = exception
+        @context   = context
       end
 
       # @return [true]
@@ -35,15 +42,15 @@ module AmazingActivist
       end
 
       # @api internal
-      # @return [Array<(:failure, Symbol, AmazingActivist::Activity, Hash{Symbol => Object})>]
+      # @return [Array]
       def deconstruct
-        [:failure, @code, @activity, @context]
+        [:failure, @code, @activity]
       end
 
       # @api internal
-      # @return [Hash{success: Object, activity: AmazingActivist::Activity}]
+      # @return [Hash]
       def deconstruct_keys(_)
-        { failure: @code, activity: @activity, context: @context }
+        { failure: @code, activity: @activity, message: message, exception: exception, context: context }
       end
 
       # @yieldparam self [self]
@@ -56,8 +63,11 @@ module AmazingActivist
         raise UnwrapError, self
       end
 
+      # Failure message.
+      #
+      # @return [String]
       def message
-        @context.fetch(:message) { Polyglot.new(@activity).message(@code, **context) }
+        @message || Polyglot.new(@activity).message(@code, **context)
       end
     end
   end

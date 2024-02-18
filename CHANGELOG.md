@@ -7,10 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `UnwrapError#cause` respects failure's `#exception`.
+
+### Changed
+
+- (BREAKING) `Base#failure` context must be given as keyword argument.
+- (BREAKING) `Failure#message` is no longer part of its `#context`.
+- (BREAKING) `Failure#exception` is no longer part of its `#context`.
+
 
 ## [0.2.0] - 2024-01-28
 
-## Added
+### Added
 
 - Generate default failure messages with
   [i18n](https://github.com/ruby-i18n/i18n).
@@ -18,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2024-01-27
 
-## Added
+### Added
 
 - Initial release.
 

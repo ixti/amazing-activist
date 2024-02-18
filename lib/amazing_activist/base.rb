@@ -61,8 +61,8 @@ module AmazingActivist
     # @param code (see Outcome::Failure#initialize)
     # @param context (see Outcome::Failure#initialize)
     # @return [Outcome::Failure]
-    def failure(code, **context)
-      Outcome::Failure.new(code, activity: self, context: context)
+    def failure(code, message: nil, exception: nil, context: {})
+      Outcome::Failure.new(code, activity: self, message: message, exception: exception, context: context)
     end
   end
 end

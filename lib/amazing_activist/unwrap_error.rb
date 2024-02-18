@@ -13,5 +13,10 @@ module AmazingActivist
 
       super(failure.message)
     end
+
+    # @return [Exception, nil]
+    def cause
+      @failure.exception || super
+    end
   end
 end
