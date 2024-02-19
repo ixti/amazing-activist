@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `Base.on_broken_outcome` allows registering custom handler for the broken
+  outcome contract (when `#call` returns neither `Success` nor `Failure`)
+- `Base.rescue_from` allows registering unhandled exception handlers.
+
 
 ## [0.3.0] - 2024-02-19
 

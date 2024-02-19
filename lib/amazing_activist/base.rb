@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "./irresistible"
 require_relative "./outcome"
 
 module AmazingActivist
@@ -28,14 +29,7 @@ module AmazingActivist
   # end
   # ----
   class Base
-    class << self
-      # Convenience method to initialize and immediatelly call the activity.
-      # @see #initialize
-      # @see #call
-      def call(...)
-        new(...).call
-      end
-    end
+    extend Irresistible
 
     # @param params [Hash{Symbol => Object}]
     def initialize(**params)
