@@ -34,5 +34,6 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 3.0.0"
 
   spec.add_runtime_dependency "dry-inflector"
+  spec.add_runtime_dependency "dry-validation"
   spec.add_runtime_dependency "i18n"
 end

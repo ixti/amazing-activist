@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "dry-validation"
+
 require_relative "./broken_contract_error"
 
 module AmazingActivist
@@ -30,6 +32,10 @@ module AmazingActivist
       raise ArgumentError, "Handler block required." unless block
 
       @broken_contract_handler = block
+    end
+
+    def contract(&block)
+      const_set(:Contract, Class.new(Dry::Validation::Contract, &block))
     end
   end
 end
