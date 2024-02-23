@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require "active_support/core_ext/object/blank"
-require "active_support/core_ext/string/inflections"
-
 require "i18n"
+
+require_relative "./inflector"
 
 I18n.load_path += Dir[File.expand_path("#{__dir__}/locale/*.yml")]
 
@@ -41,7 +40,7 @@ module AmazingActivist
       ]
 
       if @activity.class.name
-        activity = @activity.class.name.underscore.presence.delete_suffix("_activity")
+        activity = INFLECTOR.underscore(@activity.class.name).delete_suffix("_activity")
         i18n_key = :"amazing_activist.activities.#{activity}.failures.#{code}"
       else
         activity = "(anonymous)"
