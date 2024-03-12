@@ -1,7 +1,7 @@
 en:
   amazing_activist:
     activities:
-      pretty/damn_good:
+      pretty/damn_good_activity:
         failures:
           bad_choice: "Choose something else!"
     failures:

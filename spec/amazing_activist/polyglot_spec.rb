@@ -13,25 +13,25 @@ RSpec.describe AmazingActivist::Polyglot do
 
     around { |ex| I18n.with_locale(locale, &ex) }
 
-    it { is_expected.to eq "<pretty/damn_good> activity failed - blablabla" }
+    it { is_expected.to eq "<pretty/damn_good_activity> failed - blablabla" }
 
     context "when activity class name has no Activity suffix" do
       let(:activity) { Unconventional::ClassNaming.new }
 
-      it { is_expected.to eq "<unconventional/class_naming> activity failed - blablabla" }
+      it { is_expected.to eq "<unconventional/class_naming> failed - blablabla" }
     end
 
     context "when activity class is anonymous" do
       let(:activity) { Class.new(AmazingActivist::Base).new }
 
-      it { is_expected.to eq "<(anonymous)> activity failed - blablabla" }
+      it { is_expected.to eq "<(anonymous activity)> failed - blablabla" }
     end
 
     context "when there's generic failure message for selected locale" do
       let(:locale) { :gl }
       let(:code)   { :not_implemented }
 
-      it { is_expected.to eq "<pretty/damn_good> actividade non ten implementación" }
+      it { is_expected.to eq "<pretty/damn_good_activity> non ten implementación" }
     end
 
     context "when there's named failure message for given code" do
