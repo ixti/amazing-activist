@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- (BREAKING) i18n does not remove `_activity` suffix from keys anymore, e.g.
+  for `Foo::BarActivity` expected i18n key will be `foo/bar_activity`, not
+  `foo/bar` as it was before.
+
 
 ## [0.4.0] - 2024-02-19
 

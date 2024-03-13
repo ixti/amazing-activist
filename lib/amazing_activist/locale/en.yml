@@ -1,4 +1,4 @@
 en:
   amazing_activist:
     failures:
-      not_implemented: "<%{activity}> activity has no implementation"
+      not_implemented: "<%{activity}> has no implementation"

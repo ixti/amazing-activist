@@ -10,9 +10,6 @@ I18n.load_path += Dir[File.expand_path("#{__dir__}/locale/*.yml")]
 module AmazingActivist
   # @api internal
   class Polyglot
-    ANONYMOUS_ACTIVITY_NAME = "anonymous"
-    private_constant :ANONYMOUS_ACTIVITY_NAME
-
     def initialize(activity)
       @activity = activity
     end
@@ -25,26 +22,26 @@ module AmazingActivist
     # Thus, if activity `Pretty::DamnGoodActivity` failed with `:bad_choise`
     # code the lookup will be:
     #
-    # * `amazing_activist.activities.pretty/damn_good.failures.bad_choice
+    # * `amazing_activist.activities.pretty/damn_good_activity.failures.bad_choice
     # * `amazing_activist.failures.bad_choice
     #
     # If there's no translation with any of the above keys, a generic
     # non-translated message will be used:
     #
-    #     <pretty/damn_good> activity failed - bad_choice
+    #     <pretty/damn_good_activity> failed - bad_choice
     #
     # @return [String] Failure message
     def message(code, **context)
       default = [
         :"amazing_activist.failures.#{code}",
-        "<%{activity}> activity failed - %{code}" # rubocop:disable Style/FormatStringToken
+        "<%{activity}> failed - %{code}" # rubocop:disable Style/FormatStringToken
       ]
 
       if @activity.class.name
-        activity = @activity.class.name.underscore.presence.delete_suffix("_activity")
+        activity = @activity.class.name.underscore.presence
         i18n_key = :"amazing_activist.activities.#{activity}.failures.#{code}"
       else
-        activity = "(anonymous)"
+        activity = "(anonymous activity)"
         i18n_key = default.shift
       end
 
