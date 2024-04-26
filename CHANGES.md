@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Optimize `Failure#deconstruct_keys` to avoid message generation if requested
+  keys are present and do not include it.
+
+
 ## [0.5.0] - 2023-03-13
 
 ### Changed

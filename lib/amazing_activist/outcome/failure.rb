@@ -49,8 +49,11 @@ module AmazingActivist
 
       # @api internal
       # @return [Hash]
-      def deconstruct_keys(_)
-        { failure: @code, activity: @activity, message: message, exception: exception, context: context }
+      def deconstruct_keys(keys)
+        deconstructed = { failure: @code, activity: @activity, exception: exception, context: context }
+        deconstructed[:message] = message if keys.nil? || keys.include?(:message)
+
+        deconstructed
       end
 
       # @yieldparam self [self]
