@@ -4,5 +4,14 @@ en:
       pretty/damn_good_activity:
         failures:
           bad_choice: "Choose something else!"
+
     failures:
       you_shall_not_pass: "%{name}, get lost already!"
+
+  activities:
+    yet_another_activity:
+      failures:
+        bad_choice: "I repeat! Choose something else!"
+
+    failures:
+      famous_last_words: "%{name} JENKINS!!!"

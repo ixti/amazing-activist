@@ -7,8 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2024-08-30
 
-## [0.5.1] - 2023-04-26
+### Changed
+
+- i18n now looks for keys without `amazing_activist` prefix as well; Lookup
+  order now goes like: `amazing_activist.activities.[activity].failures`,
+  `activities.[activity].failures`, `amazing_activist.failures`,
+  `activities.failures`, with fallback to hardcoded `"<[activity]> failed - [code]"`.
+
+
+## [0.5.1] - 2024-04-26
 
 ### Changed
 
@@ -16,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   keys are present and do not include it.
 
 
-## [0.5.0] - 2023-03-13
+## [0.5.0] - 2024-03-13
 
 ### Changed
 

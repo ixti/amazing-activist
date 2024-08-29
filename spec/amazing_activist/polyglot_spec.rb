@@ -39,5 +39,26 @@ RSpec.describe AmazingActivist::Polyglot do
 
       it { is_expected.to eq "Choose something else!" }
     end
+
+    context "when translation key has no `amazing_activist.` scope" do
+      let(:activity) { YetAnotherActivity.new }
+      let(:code)     { :bad_choice }
+
+      it { is_expected.to eq "I repeat! Choose something else!" }
+    end
+
+    context "when there's generic code message with `amazing_activist.` scope" do
+      let(:code)            { :you_shall_not_pass }
+      let(:failure_context) { { name: "Barlog" } }
+
+      it { is_expected.to eq "Barlog, get lost already!" }
+    end
+
+    context "when there's generic code message without `amazing_activist.` scope" do
+      let(:code)            { :famous_last_words }
+      let(:failure_context) { { name: "LEEROY" } }
+
+      it { is_expected.to eq "LEEROY JENKINS!!!" }
+    end
   end
 end

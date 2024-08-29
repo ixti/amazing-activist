@@ -69,3 +69,5 @@ module Pretty
     end
   end
 end
+
+class YetAnotherActivity < Pretty::DamnGoodActivity; end
