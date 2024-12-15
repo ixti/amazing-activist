@@ -62,6 +62,7 @@ This library aims to support and is tested against:
 ** MRI 3.1.x
 ** MRI 3.2.x
 ** MRI 3.3.x
+** MRI 3.4.x
 
 If something doesn't work on one of these versions, it's a bug.
 
