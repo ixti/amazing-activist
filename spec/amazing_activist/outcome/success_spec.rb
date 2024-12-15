@@ -6,6 +6,18 @@ RSpec.describe AmazingActivist::Outcome::Success do
   let(:value)    { :dobby_is_free }
   let(:activity) { Pretty::DamnGoodActivity.new }
 
+  describe "#inspect" do
+    subject { outcome.inspect }
+
+    it { is_expected.to eq "#<AmazingActivist::Outcome::Success (Pretty::DamnGoodActivity) :dobby_is_free>" }
+  end
+
+  describe "#to_s" do
+    it "is an alias of #inspect" do
+      expect(outcome.method(:to_s)).to eq(outcome.method(:inspect))
+    end
+  end
+
   describe "#deconstruct" do
     subject { outcome.deconstruct }
 

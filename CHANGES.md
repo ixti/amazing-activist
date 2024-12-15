@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Support Ruby-3.4.X
+- Support Ruby-3.4.X.
+- Add `Success#inspect` and `Failure#inspect` methods.
 
 
 ## [0.5.2] - 2024-08-30
