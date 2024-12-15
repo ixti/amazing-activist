@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../undefined"
+
 module AmazingActivist
   module Outcome
     class Success
@@ -41,8 +43,21 @@ module AmazingActivist
         { success: @value, activity: @activity }
       end
 
-      # @return [Object]
-      def value_or
+      # @note Method requires default value or block (even though neither will
+      #   be used) to keep it consistent with {Failure#value_or}, and avoid
+      #   unpleasant surprises when code is not testing all possible outcomes.
+      #
+      # @raise [ArgumentError] if neither default value, nor block given
+      # @return [Object] unwrapped value
+      def value_or(default = UNDEFINED)
+        raise ArgumentError, "either default value, or block must be given" if default == UNDEFINED && !block_given?
+
+        unless default == UNDEFINED
+          return @value unless block_given?
+
+          warn "block supersedes default value argument"
+        end
+
         @value
       end
 

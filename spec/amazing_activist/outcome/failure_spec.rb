@@ -67,12 +67,39 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   end
 
   describe "#value_or" do
-    it "returns result of the given block" do
-      expect(outcome.value_or { :result_of_block }).to be :result_of_block
+    it "requires either default value or a block" do
+      expect { outcome.value_or }.to raise_error(ArgumentError)
     end
 
-    it "yields control to the given block with self as a sole argument" do
-      expect { |b| outcome.value_or(&b) }.to yield_with_args(outcome)
+    context "when default value given" do
+      it "returns provided value" do
+        expect(outcome.value_or(:literal)).to be :literal
+      end
+    end
+
+    context "when block given" do
+      it "returns result of the given block" do
+        expect(outcome.value_or { :result_of_block }).to be :result_of_block
+      end
+
+      it "yields control to the given block with self as a sole argument" do
+        expect { |b| outcome.value_or(&b) }.to yield_with_args(outcome)
+      end
+    end
+
+    context "when both block, and literal given" do
+      it "returns result of the given block" do
+        expect(outcome.value_or(:literal) { :result_of_block }).to be :result_of_block
+      end
+
+      it "yields control to the given block with self as a sole argument" do
+        expect { |b| outcome.value_or(:literal, &b) }.to yield_with_args(outcome)
+      end
+
+      it "warns that block supersedes argument" do
+        expect { outcome.value_or(:literal) { :result_of_block } }
+          .to output(%r{block supersedes}).to_stderr
+      end
     end
   end
 
