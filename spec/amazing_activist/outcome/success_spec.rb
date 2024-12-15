@@ -49,12 +49,39 @@ RSpec.describe AmazingActivist::Outcome::Success do
   end
 
   describe "#value_or" do
-    it "returns wrapped value" do
-      expect(outcome.value_or { Object.new }).to be value
+    it "requires either default value or a block" do
+      expect { outcome.value_or }.to raise_error(ArgumentError)
     end
 
-    it "ignores given block" do
-      expect { |b| outcome.value_or(&b) }.not_to yield_control
+    context "when default value given" do
+      it "returns actual value" do
+        expect(outcome.value_or(:literal)).to be value
+      end
+    end
+
+    context "when block given" do
+      it "returns actual value" do
+        expect(outcome.value_or { :result_of_block }).to be value
+      end
+
+      it "does not actually call it" do
+        expect { |b| outcome.value_or(&b) }.not_to yield_control
+      end
+    end
+
+    context "when both block, and literal given" do
+      it "returns actual value" do
+        expect(outcome.value_or { :result_of_block }).to be value
+      end
+
+      it "does not actually call it" do
+        expect { |b| outcome.value_or(&b) }.not_to yield_control
+      end
+
+      it "warns that block supersedes argument" do
+        expect { outcome.value_or(:literal) { :result_of_block } }
+          .to output(%r{block supersedes}).to_stderr
+      end
     end
   end
 end

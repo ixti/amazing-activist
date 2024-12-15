@@ -2,6 +2,7 @@
 
 require_relative "../polyglot"
 require_relative "../unwrap_error"
+require_relative "../undefined"
 
 module AmazingActivist
   module Outcome
@@ -22,13 +23,13 @@ module AmazingActivist
       # @param activity [AmazingActivist::Activity]
       # @param message [#to_s, nil]
       # @param exception [Exception, nil]
-      # @param context [Hash]
+      # @param context [#to_h]
       def initialize(code, activity:, message:, exception:, context:)
         @code      = code.to_sym
         @activity  = activity
         @message   = message&.to_s
         @exception = exception
-        @context   = context
+        @context   = context.to_h
       end
 
       def inspect
@@ -62,8 +63,22 @@ module AmazingActivist
         deconstructed
       end
 
-      # @yieldparam self [self]
-      def value_or
+      # @overload value_or(default)
+      #   @param default [Object]
+      #   @return [Object] default value
+      # @overload value_or(&block)
+      #   @yieldparam self [self]
+      #   @yieldreturn [Object] result of the block
+      # @raise [ArgumentError] if neither default value, nor block given
+      def value_or(default = UNDEFINED)
+        raise ArgumentError, "either default value, or block must be given" if default == UNDEFINED && !block_given?
+
+        unless default == UNDEFINED
+          return default unless block_given?
+
+          warn "block supersedes default value argument"
+        end
+
         yield self
       end
 

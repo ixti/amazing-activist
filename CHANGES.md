@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Support Ruby-3.4.X.
 - Add `Success#inspect` and `Failure#inspect` methods.
+- Support default value literal in `Failure#value_or`.
+
+### Changed
+
+- (BREAKING) `Success#value_or` requries default value or block to keep it
+  consistent with `Failure#value_or`.
 
 
 ## [0.5.2] - 2024-08-30
