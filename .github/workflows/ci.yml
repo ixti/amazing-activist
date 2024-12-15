@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ ruby-3.0, ruby-3.1, ruby-3.2, ruby-3.3 ]
+        ruby: [ ruby-3.0, ruby-3.1, ruby-3.2, ruby-3.3, ruby-head ]
 
     steps:
       - uses: actions/checkout@v4
@@ -31,9 +31,7 @@ jobs:
       - run: bundle exec rake test
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v4
 
   # See: https://github.com/orgs/community/discussions/26822#discussioncomment-3305794
   test-finale:
