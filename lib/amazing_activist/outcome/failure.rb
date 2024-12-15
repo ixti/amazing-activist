@@ -31,6 +31,12 @@ module AmazingActivist
         @context   = context
       end
 
+      def inspect
+        "#<#{self.class} (#{@activity.class}) #{@code.inspect}>"
+      end
+
+      alias to_s inspect
+
       # @return [true]
       def success?
         false

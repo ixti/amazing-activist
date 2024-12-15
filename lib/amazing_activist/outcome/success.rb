@@ -13,6 +13,12 @@ module AmazingActivist
         @activity = activity
       end
 
+      def inspect
+        "#<#{self.class} (#{@activity.class}) #{@value.inspect}>"
+      end
+
+      alias to_s inspect
+
       # @return [true]
       def success?
         true

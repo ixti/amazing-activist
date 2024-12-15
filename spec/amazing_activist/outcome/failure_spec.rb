@@ -17,6 +17,18 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   let(:exception)       { StandardError.new("nope") }
   let(:failure_context) { { name: "Barlog" } }
 
+  describe "#inspect" do
+    subject { outcome.inspect }
+
+    it { is_expected.to eq "#<AmazingActivist::Outcome::Failure (Pretty::DamnGoodActivity) :you_shall_not_pass>" }
+  end
+
+  describe "#to_s" do
+    it "is an alias of #inspect" do
+      expect(outcome.method(:to_s)).to eq(outcome.method(:inspect))
+    end
+  end
+
   describe "#deconstruct" do
     subject { outcome.deconstruct }
 
