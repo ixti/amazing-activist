@@ -14,9 +14,9 @@ module AmazingActivist
     #
     # @see #initialize
     # @see #call
-    def call(...)
-      activity = new(...)
-      outcome  = irresistible_call(activity)
+    def call(*args, **kwargs, &block)
+      activity = new(*args, **kwargs)
+      outcome  = irresistible_call(activity, &block)
 
       unless outcome.is_a?(Outcome::Failure) || outcome.is_a?(Outcome::Success)
         return activity.instance_exec(outcome, &broken_contract_handler)
@@ -28,8 +28,8 @@ module AmazingActivist
     private
 
     # @api internal
-    def irresistible_call(activity)
-      activity.call
+    def irresistible_call(activity, &block)
+      activity.call(&block)
     rescue UnwrapError => e
       e.failure
     rescue Exception => e # rubocop:disable Lint/RescueException
