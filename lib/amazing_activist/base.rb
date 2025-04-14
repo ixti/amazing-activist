@@ -34,7 +34,15 @@ module AmazingActivist
     extend Irresistible
     extend Literal::Properties
 
-    prop :params, _Hash(Symbol, _Any?), :**, reader: :private, writer: false
+    class << self
+      private
+
+      def prop(name, type, kind = :keyword, reader: :private, default: nil, &)
+        super(name, type, kind, reader:, writer: false, predicate: false, default:, &)
+      end
+    end
+
+    prop :params, _Hash(Symbol, _Any?), :**
 
     # @return [Outcome::Success, Outcome::Failure]
     def call
