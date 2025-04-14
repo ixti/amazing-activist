@@ -68,6 +68,20 @@ module Pretty
       end
     end
   end
+
+  class ParameterizedActivity < AmazingActivist::Base
+    prop :code, Symbol
+    prop :name, _String?
+
+    def call
+      success({ code:, name:, params: })
+    end
+  end
+
+  class InheritedParameterizedActivity < ParameterizedActivity
+    prop :code, _Any?
+    prop :params, _Any?
+  end
 end
 
 class YetAnotherActivity < Pretty::DamnGoodActivity; end

@@ -31,10 +31,7 @@ module AmazingActivist
   class Base
     extend Irresistible
 
-    # @param params [Hash{Symbol => Object}]
-    def initialize(**params)
-      @params = params
-    end
+    prop :params, _Hash(Symbol, _Any?), :**
 
     # @return [Outcome::Success, Outcome::Failure]
     def call
@@ -42,9 +39,6 @@ module AmazingActivist
     end
 
     private
-
-    # @return [Hash{Symbol => Object}]
-    attr_reader :params
 
     # @param value (see Outcome::Success#initialize)
     # @return [Outcome::Success]
