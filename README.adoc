@@ -58,8 +58,6 @@ end
 This library aims to support and is tested against:
 
 * https://www.ruby-lang.org[Ruby]
-** MRI 3.0.x
-** MRI 3.1.x
 ** MRI 3.2.x
 ** MRI 3.3.x
 ** MRI 3.4.x

@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ ruby-3.0, ruby-3.1, ruby-3.2, ruby-3.3, ruby-head ]
+        ruby: [ ruby-3.2, ruby-3.3, ruby-3.4, ruby-head ]
 
     steps:
       - uses: actions/checkout@v4
