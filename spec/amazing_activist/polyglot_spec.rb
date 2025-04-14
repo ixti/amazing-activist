@@ -9,20 +9,20 @@ RSpec.describe AmazingActivist::Polyglot do
     let(:locale)          { :en }
     let(:code)            { :blablabla }
     let(:failure_context) { {} }
-    let(:activity)        { Pretty::DamnGoodActivity.new }
+    let(:activity)        { Pretty::DamnGoodActivity.allocate }
 
     around { |ex| I18n.with_locale(locale, &ex) }
 
     it { is_expected.to eq "<pretty/damn_good_activity> failed - blablabla" }
 
     context "when activity class name has no Activity suffix" do
-      let(:activity) { Unconventional::ClassNaming.new }
+      let(:activity) { Unconventional::ClassNaming.allocate }
 
       it { is_expected.to eq "<unconventional/class_naming> failed - blablabla" }
     end
 
     context "when activity class is anonymous" do
-      let(:activity) { Class.new(AmazingActivist::Base).new }
+      let(:activity) { Class.new(AmazingActivist::Base).allocate }
 
       it { is_expected.to eq "<(anonymous activity)> failed - blablabla" }
     end
@@ -41,7 +41,7 @@ RSpec.describe AmazingActivist::Polyglot do
     end
 
     context "when translation key has no `amazing_activist.` scope" do
-      let(:activity) { YetAnotherActivity.new }
+      let(:activity) { YetAnotherActivity.allocate }
       let(:code)     { :bad_choice }
 
       it { is_expected.to eq "I repeat! Choose something else!" }

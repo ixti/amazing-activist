@@ -12,7 +12,7 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   end
 
   let(:code)            { :you_shall_not_pass }
-  let(:activity)        { Pretty::DamnGoodActivity.new }
+  let(:activity)        { Pretty::DamnGoodActivity.allocate }
   let(:message)         { nil }
   let(:exception)       { StandardError.new("nope") }
   let(:failure_context) { { name: "Barlog" } }

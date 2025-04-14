@@ -4,7 +4,7 @@ RSpec.describe AmazingActivist::Outcome::Success do
   subject(:outcome) { described_class.new(value, activity: activity) }
 
   let(:value)    { :dobby_is_free }
-  let(:activity) { Pretty::DamnGoodActivity.new }
+  let(:activity) { Pretty::DamnGoodActivity.allocate }
 
   describe "#inspect" do
     subject { outcome.inspect }
