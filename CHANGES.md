@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Use [literal](https://github.com/joeldrapper/literal) gem to aid inputs
+  boilerplate.
+
+### Changed
+
+- (BREAKING) Drop support of Ruby-3.0.X, and Ruby-3.1.X
+
 
 ## [0.6.0] - 2024-12-15
 
