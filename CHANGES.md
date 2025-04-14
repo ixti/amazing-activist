@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.7.0] - 2025-04-14
+
 ### Added
 
 - Use [literal](https://github.com/joeldrapper/literal) gem to aid inputs
@@ -94,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/ixti/amazing-activist/compare/v0.6.0...main
+[Unreleased]: https://github.com/ixti/amazing-activist/compare/v0.7.0...main
+[0.7.0]: https://github.com/ixti/amazing-activist/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/ixti/amazing-activist/compare/v0.5.2...v0.6.0
 [0.5.2]: https://github.com/ixti/amazing-activist/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/ixti/amazing-activist/compare/v0.5.0...v0.5.1
