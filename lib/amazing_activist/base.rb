@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "literal"
-
 require_relative "./irresistible"
 require_relative "./outcome"
 
@@ -32,15 +30,6 @@ module AmazingActivist
   # ----
   class Base
     extend Irresistible
-    extend Literal::Properties
-
-    class << self
-      private
-
-      def prop(name, type, kind = :keyword, reader: :private, default: nil, &)
-        super(name, type, kind, reader:, writer: false, predicate: false, default:, &)
-      end
-    end
 
     prop :params, _Hash(Symbol, _Any?), :**
 

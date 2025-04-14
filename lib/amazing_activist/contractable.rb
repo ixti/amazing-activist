@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+require "literal"
+
 require_relative "./broken_contract_error"
 
 module AmazingActivist
   module Contractable
+    include Literal::Properties
+
     DEFAULT_BROKEN_OUTCOME_HANDLER = lambda do |outcome|
       raise BrokenContractError, "#{self.class}#call returned #{outcome.class} instead of Outcome"
     end
@@ -25,6 +29,10 @@ module AmazingActivist
     end
 
     private
+
+    def prop(name, type, kind = :keyword, reader: :private, default: nil, &)
+      super(name, type, kind, reader:, writer: false, predicate: false, default:, &)
+    end
 
     def on_broken_outcome(&block)
       raise ArgumentError, "Handler block required." unless block
