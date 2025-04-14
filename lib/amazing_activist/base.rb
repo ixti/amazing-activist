@@ -31,6 +31,11 @@ module AmazingActivist
   class Base
     extend Irresistible
 
+    class << self
+      # Prohibit `Activity.new(...).call` style, as it makes activist not much `Irresistable`
+      private :new
+    end
+
     prop :params, _Hash(Symbol, _Any?), :**
 
     # @return [Outcome::Success, Outcome::Failure]

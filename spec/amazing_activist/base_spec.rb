@@ -27,7 +27,7 @@ RSpec.describe AmazingActivist::Base do
 
   describe ".call" do
     it "delegates execution to #call" do
-      activity = Pretty::DamnGoodActivity.new
+      activity = Pretty::DamnGoodActivity.__send__(:new)
 
       allow(Pretty::DamnGoodActivity).to receive(:new).and_return(activity)
       allow(activity).to receive(:call).and_call_original

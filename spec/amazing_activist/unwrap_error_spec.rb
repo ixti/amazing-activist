@@ -3,7 +3,7 @@
 RSpec.describe AmazingActivist::UnwrapError do
   subject(:error) { described_class.new(failure) }
 
-  let(:activity)  { Pretty::DamnGoodActivity.new }
+  let(:activity)  { Pretty::DamnGoodActivity.allocate }
   let(:exception) { nil }
 
   let(:failure) do

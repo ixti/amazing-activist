@@ -12,7 +12,6 @@ module AmazingActivist
 
     # Initialize and call activity.
     #
-    # @see #initialize
     # @see #call
     def call(...)
       activity = new(...)
