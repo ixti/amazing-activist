@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - (BREAKING) Prohibit `AmazingActivist::Base#new` calls. All activities must be
   called via `.call`, i.e. `A.call(...)` instead of `A.new(...).call`.
 
+### Removed
+
+- (BREAKING) Don't provide default catch-all `params` prop.
+
 
 ## [0.7.0] - 2025-04-14
 

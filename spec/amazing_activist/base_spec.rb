@@ -109,11 +109,11 @@ RSpec.describe AmazingActivist::Base do
           exception: an_instance_of(RuntimeError)
         )
 
-      expect(activity_class.call(error_class: NotImplementedError))
+      expect(activity_class.call(error_class: SyntaxError))
         .to be_failure
         .and have_attributes(
           code:      :unhandled_exception,
-          exception: an_instance_of(NotImplementedError)
+          exception: an_instance_of(SyntaxError)
         )
     end
 

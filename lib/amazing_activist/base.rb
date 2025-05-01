@@ -11,6 +11,8 @@ module AmazingActivist
   # [source,ruby]
   # ----
   # class OnboardActivity < AmazingActivist::Base
+  #   prop :params, _Hash(Symbol, _Any?), :**
+  #
   #   def call
   #     user = User.new(params)
   #
@@ -35,8 +37,6 @@ module AmazingActivist
       # Prohibit `Activity.new(...).call` style, as it makes activist not much `Irresistable`
       private :new
     end
-
-    prop :params, _Hash(Symbol, _Any?), :**
 
     # @return [Outcome::Success, Outcome::Failure]
     def call

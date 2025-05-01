@@ -35,13 +35,17 @@ class UnhandledExceptionActivity < AmazingActivist::Base
     end
   end
 
+  prop :error_class, _Class(Exception), default: -> { RuntimeError }
+
   def call
-    raise params.fetch(:error_class, RuntimeError), "Boom!"
+    raise error_class, "Boom!"
   end
 end
 
 module Pretty
   class DamnGoodActivity < AmazingActivist::Base
+    prop :params, _Hash(Symbol, _Any?), :**
+
     def call
       if :go_to_the_punk_rock_show == params[:what_do_you_want_to_do_today?]
         success("YEAH! Let's go to the punk rock show!")
@@ -52,6 +56,8 @@ module Pretty
   end
 
   class IrresistibleActivity < AmazingActivist::Base
+    prop :proposal, _Any?
+
     def call
       propose.unwrap!
       success
@@ -60,7 +66,7 @@ module Pretty
     private
 
     def propose
-      case params[:proposal]
+      case proposal
       when :watch_tv_and_have_a_couple_of_brews
         failure(:you_can_do_better)
       else
@@ -74,13 +80,17 @@ module Pretty
     prop :name, _String?
 
     def call
-      success({ code:, name:, params: })
+      success({ code:, name: })
     end
   end
 
   class InheritedParameterizedActivity < ParameterizedActivity
-    prop :code, _Any?
-    prop :params, _Any?
+    prop :code,    Integer
+    prop :details, String
+
+    def call
+      success({ code:, name:, details: })
+    end
   end
 end
 
