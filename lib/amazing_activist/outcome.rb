@@ -1,4 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "./outcome/success"
-require_relative "./outcome/failure"
+module AmazingActivist
+  module Outcome
+    UNDEFINED = Object.new.freeze
+
+    def inspect
+      "#<#{self.class} (#{@activity.class})>"
+    end
+
+    alias to_s inspect
+  end
+end

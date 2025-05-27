@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "amazing_activist"
-
 I18n.load_path << File.expand_path("#{__dir__}/locale/en.yml")
 
 module Unconventional

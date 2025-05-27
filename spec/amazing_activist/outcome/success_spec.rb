@@ -6,10 +6,12 @@ RSpec.describe AmazingActivist::Outcome::Success do
   let(:value)    { :dobby_is_free }
   let(:activity) { Pretty::DamnGoodActivity.allocate }
 
+  it { is_expected.to be_an AmazingActivist::Outcome }
+
   describe "#inspect" do
     subject { outcome.inspect }
 
-    it { is_expected.to eq "#<AmazingActivist::Outcome::Success (Pretty::DamnGoodActivity) :dobby_is_free>" }
+    it { is_expected.to eq "#<AmazingActivist::Outcome::Success (Pretty::DamnGoodActivity)>" }
   end
 
   describe "#to_s" do

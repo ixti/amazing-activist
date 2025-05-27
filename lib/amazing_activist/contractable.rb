@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require "literal"
-
-require_relative "./broken_contract_error"
-
 module AmazingActivist
   module Contractable
     include Literal::Properties

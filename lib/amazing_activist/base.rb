@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "./irresistible"
-require_relative "./outcome"
-
 module AmazingActivist
   # Abstract activity class.
   #

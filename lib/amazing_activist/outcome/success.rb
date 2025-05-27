@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../undefined"
-
 module AmazingActivist
   module Outcome
     class Success
+      include Outcome
+
       # @return [AmazingActivist::Base]
       attr_reader :activity
 
@@ -15,21 +15,8 @@ module AmazingActivist
         @activity = activity
       end
 
-      def inspect
-        "#<#{self.class} (#{@activity.class}) #{@value.inspect}>"
-      end
-
-      alias to_s inspect
-
-      # @return [true]
-      def success?
-        true
-      end
-
-      # @return [false]
-      def failure?
-        false
-      end
+      def success? = true
+      def failure? = false
 
       # @api internal
       # @return [Array]

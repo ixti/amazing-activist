@@ -17,10 +17,12 @@ RSpec.describe AmazingActivist::Outcome::Failure do
   let(:exception)       { StandardError.new("nope") }
   let(:failure_context) { { name: "Barlog" } }
 
+  it { is_expected.to be_an AmazingActivist::Outcome }
+
   describe "#inspect" do
     subject { outcome.inspect }
 
-    it { is_expected.to eq "#<AmazingActivist::Outcome::Failure (Pretty::DamnGoodActivity) :you_shall_not_pass>" }
+    it { is_expected.to eq "#<AmazingActivist::Outcome::Failure (Pretty::DamnGoodActivity)>" }
   end
 
   describe "#to_s" do

@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../polyglot"
-require_relative "../unwrap_error"
-require_relative "../undefined"
-
 module AmazingActivist
   module Outcome
     class Failure
+      include Outcome
+
       # @return [Symbol]
       attr_reader :code
 
@@ -32,21 +30,8 @@ module AmazingActivist
         @context   = context.to_h
       end
 
-      def inspect
-        "#<#{self.class} (#{@activity.class}) #{@code.inspect}>"
-      end
-
-      alias to_s inspect
-
-      # @return [true]
-      def success?
-        false
-      end
-
-      # @return [false]
-      def failure?
-        true
-      end
+      def success? = false
+      def failure? = true
 
       # @api internal
       # @return [Array]

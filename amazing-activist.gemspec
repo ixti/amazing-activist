@@ -35,5 +35,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activesupport"
   spec.add_dependency "i18n"
-  spec.add_dependency "literal"
+  spec.add_dependency "literal",  ">= 1.8.0"
+  spec.add_dependency "zeitwerk", ">= 2.7.3"
 end

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- (BREAKING) Switch to Zeitwerk autoloader
 
 ## [0.8.0] - 2025-05-01
 

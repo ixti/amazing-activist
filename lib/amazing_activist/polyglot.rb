@@ -3,10 +3,6 @@
 require "active_support/core_ext/object/blank"
 require "active_support/core_ext/string/inflections"
 
-require "i18n"
-
-I18n.load_path += Dir[File.expand_path("#{__dir__}/locale/*.yml")]
-
 module AmazingActivist
   # @api internal
   class Polyglot

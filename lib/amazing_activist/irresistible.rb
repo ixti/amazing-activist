@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "./broken_contract_error"
-require_relative "./contractable"
-require_relative "./rescuable"
-require_relative "./unwrap_error"
-
 module AmazingActivist
   module Irresistible
     include Contractable
