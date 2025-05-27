@@ -2,10 +2,10 @@
 
 module AmazingActivist
   class UnwrapError < Error
-    # @return [Outcome::Failure]
+    # @return [Failure]
     attr_reader :failure
 
-    # @param failure [Outcome::Failure]
+    # @param failure [Failure]
     def initialize(failure)
       @failure = failure
 

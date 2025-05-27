@@ -4,7 +4,7 @@ RSpec.describe AmazingActivist::Base do
   it "provides private `#success` outcome helper" do
     outcome = Pretty::DamnGoodActivity.call(what_do_you_want_to_do_today?: :go_to_the_punk_rock_show)
 
-    expect(outcome).to be_an(AmazingActivist::Outcome::Success).and have_attributes(
+    expect(outcome).to be_an(AmazingActivist::Success).and have_attributes(
       unwrap!: "YEAH! Let's go to the punk rock show!"
     )
   end
@@ -12,7 +12,7 @@ RSpec.describe AmazingActivist::Base do
   it "provides private `#failure` outcome helper" do
     outcome = Pretty::DamnGoodActivity.call(what_do_you_want_to_do_today?: :watch_tv)
 
-    expect(outcome).to be_an(AmazingActivist::Outcome::Failure).and have_attributes(
+    expect(outcome).to be_an(AmazingActivist::Failure).and have_attributes(
       code: :bad_choice
     )
   end
@@ -20,7 +20,7 @@ RSpec.describe AmazingActivist::Base do
   it "provides default `#call` implementation" do
     outcome = Class.new(described_class).call
 
-    expect(outcome).to be_an(AmazingActivist::Outcome::Failure).and have_attributes(
+    expect(outcome).to be_an(AmazingActivist::Failure).and have_attributes(
       code: :not_implemented
     )
   end

@@ -9,7 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- (BREAKING) Switch to Zeitwerk autoloader
+- (BREAKING) Switch to Zeitwerk autoloader.
+- (BREAKING) Deprecate `AmazingActivist::Outcome::{Success,Failure}`
+  in favour of `AmazingActivist::Success` and `AmazingActivist::Failure`
+  respectively.
 
 ## [0.8.0] - 2025-05-01
 

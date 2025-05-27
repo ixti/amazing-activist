@@ -3,7 +3,7 @@
 RSpec.describe AmazingActivist::Contractable do
   it "allows specifying input arguments" do
     expect(Pretty::ParameterizedActivity.call(code: :foo, name: "bar"))
-      .to be_an(AmazingActivist::Outcome::Success)
+      .to be_an(AmazingActivist::Success)
       .and have_attributes(unwrap!: { code: :foo, name: "bar" })
 
     # TODO: Provide configurable behaviour upon invalid input
@@ -17,7 +17,7 @@ RSpec.describe AmazingActivist::Contractable do
 
   it "allows overriding parent input arguments" do
     expect(Pretty::InheritedParameterizedActivity.call(code: 42, name: "foo", details: "bar"))
-      .to be_an(AmazingActivist::Outcome::Success)
+      .to be_an(AmazingActivist::Success)
       .and have_attributes(unwrap!: { code: 42, name: "foo", details: "bar" })
 
     # TODO: Provide configurable behaviour upon invalid input

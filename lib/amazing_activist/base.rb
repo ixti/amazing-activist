@@ -35,24 +35,24 @@ module AmazingActivist
       private :new
     end
 
-    # @return [Outcome::Success, Outcome::Failure]
+    # @return [Success, Failure]
     def call
       failure(:not_implemented)
     end
 
     private
 
-    # @param value (see Outcome::Success#initialize)
-    # @return [Outcome::Success]
+    # @param value (see Success#initialize)
+    # @return [Success]
     def success(value = nil)
-      Outcome::Success.new(value, activity: self)
+      Success.new(value, activity: self)
     end
 
-    # @param code (see Outcome::Failure#initialize)
-    # @param context (see Outcome::Failure#initialize)
-    # @return [Outcome::Failure]
+    # @param code (see Failure#initialize)
+    # @param context (see Failure#initialize)
+    # @return [Failure]
     def failure(code, message: nil, exception: nil, context: {})
-      Outcome::Failure.new(code, activity: self, message: message, exception: exception, context: context)
+      Failure.new(code, activity: self, message: message, exception: exception, context: context)
     end
   end
 end

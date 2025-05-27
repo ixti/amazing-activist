@@ -12,9 +12,7 @@ module AmazingActivist
       activity = new(...)
       outcome  = irresistible_call(activity)
 
-      unless outcome.is_a?(Outcome::Failure) || outcome.is_a?(Outcome::Success)
-        return activity.instance_exec(outcome, &broken_contract_handler)
-      end
+      return activity.instance_exec(outcome, &broken_contract_handler) unless outcome.is_a?(Outcome)
 
       outcome
     end

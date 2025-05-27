@@ -7,7 +7,7 @@ RSpec.describe AmazingActivist::UnwrapError do
   let(:exception) { nil }
 
   let(:failure) do
-    AmazingActivist::Outcome::Failure.new(
+    AmazingActivist::Failure.new(
       :nope,
       activity:  activity,
       message:   nil,

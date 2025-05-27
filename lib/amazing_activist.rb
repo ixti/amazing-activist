@@ -12,5 +12,8 @@ module AmazingActivist
   Loader = Zeitwerk::Loader.for_gem
 
   Loader.ignore("#{__dir__}/amazing-activist.rb")
+
+  Loader.collapse("#{__dir__}/amazing_activist/errors")
+
   Loader.setup
 end
