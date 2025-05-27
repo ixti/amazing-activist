@@ -3,7 +3,7 @@
 RSpec.describe AmazingActivist::Failure do
   subject(:outcome) do
     described_class.new(
-      code,
+      failure,
       activity:  activity,
       message:   message,
       exception: exception,
@@ -11,7 +11,7 @@ RSpec.describe AmazingActivist::Failure do
     )
   end
 
-  let(:code)            { :you_shall_not_pass }
+  let(:failure)         { :you_shall_not_pass }
   let(:activity)        { Pretty::DamnGoodActivity.allocate }
   let(:message)         { nil }
   let(:exception)       { StandardError.new("nope") }
@@ -34,16 +34,22 @@ RSpec.describe AmazingActivist::Failure do
   describe "#deconstruct" do
     subject { outcome.deconstruct }
 
-    it { is_expected.to eq([:failure, code, activity]) }
+    it { is_expected.to eq([:failure, failure, activity]) }
   end
 
   describe "#deconstruct_keys" do
     subject { outcome.deconstruct_keys(nil) }
 
-    it { is_expected.to include({ failure: code }) }
-    it { is_expected.to include({ message: "Barlog, get lost already!" }) }
-    it { is_expected.to include({ exception: exception }) }
-    it { is_expected.to include({ context: failure_context }) }
+    specify do
+      expect(subject)
+        .to eq({ failure:, activity:, exception:, context: failure_context, message: "Barlog, get lost already!" })
+    end
+
+    context "when specific keys are requested" do
+      subject { outcome.deconstruct_keys(%i[failure]) }
+
+      it { is_expected.to eq({ failure:, activity:, exception:, context: failure_context }) }
+    end
   end
 
   describe "#success?" do
@@ -115,7 +121,7 @@ RSpec.describe AmazingActivist::Failure do
       allow(AmazingActivist::Polyglot).to receive(:new).and_return(polyglot)
 
       expect(subject).to eq("Nope!")
-      expect(polyglot).to have_received(:message).with(code, **failure_context)
+      expect(polyglot).to have_received(:message).with(failure, **failure_context)
       expect(AmazingActivist::Polyglot).to have_received(:new).with(activity)
     end
 

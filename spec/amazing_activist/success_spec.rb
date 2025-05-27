@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe AmazingActivist::Success do
-  subject(:outcome) { described_class.new(value, activity: activity) }
+  subject(:outcome) { described_class.new(success, activity: activity) }
 
-  let(:value)    { :dobby_is_free }
+  let(:success)  { :dobby_is_free }
   let(:activity) { Pretty::DamnGoodActivity.allocate }
 
   it { is_expected.to be_an AmazingActivist::Outcome }
@@ -23,13 +23,13 @@ RSpec.describe AmazingActivist::Success do
   describe "#deconstruct" do
     subject { outcome.deconstruct }
 
-    it { is_expected.to eq([:success, value, activity]) }
+    it { is_expected.to eq([:success, success, activity]) }
   end
 
   describe "#deconstruct_keys" do
     subject { outcome.deconstruct_keys(nil) }
 
-    it { is_expected.to eq({ success: value, activity: activity }) }
+    it { is_expected.to eq({ success:, activity: }) }
   end
 
   describe "#success?" do
@@ -47,7 +47,7 @@ RSpec.describe AmazingActivist::Success do
   describe "#unwrap!" do
     subject { outcome.unwrap! }
 
-    it { is_expected.to be value }
+    it { is_expected.to be success }
   end
 
   describe "#value_or" do
@@ -57,13 +57,13 @@ RSpec.describe AmazingActivist::Success do
 
     context "when default value given" do
       it "returns actual value" do
-        expect(outcome.value_or(:literal)).to be value
+        expect(outcome.value_or(:literal)).to be success
       end
     end
 
     context "when block given" do
       it "returns actual value" do
-        expect(outcome.value_or { :result_of_block }).to be value
+        expect(outcome.value_or { :result_of_block }).to be success
       end
 
       it "does not actually call it" do
@@ -73,7 +73,7 @@ RSpec.describe AmazingActivist::Success do
 
     context "when both block, and literal given" do
       it "returns actual value" do
-        expect(outcome.value_or { :result_of_block }).to be value
+        expect(outcome.value_or { :result_of_block }).to be success
       end
 
       it "does not actually call it" do

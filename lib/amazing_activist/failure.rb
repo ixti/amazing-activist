@@ -1,81 +1,52 @@
 # frozen_string_literal: true
 
 module AmazingActivist
-  class Failure
+  class Failure < Literal::Data
     include Outcome
 
-    # @return [Symbol]
-    attr_reader :code
+    # @!attribute [r] failure
+    #   @return failure [Symbol]
+    prop :failure, _Interface(:to_sym), :positional, &:to_sym
 
-    # @return [AmazingActivist::Base]
-    attr_reader :activity
+    # @!attribute [r] activity
+    #   @return [AmazingActivist::Base]
+    prop :activity, AmazingActivist::Base
 
-    # @return [Exception, nil]
-    attr_reader :exception
+    # @!attribute [r] exception
+    #   @return [Exception, nil]
+    prop :exception, _Nilable(Exception)
 
-    # @return [Hash]
-    attr_reader :context
+    # @!attribute [r] context
+    #   @return [Hash]
+    prop :context, _Hash(_Void, _Void), &:to_h
 
-    # @param code [#to_sym]
-    # @param activity [AmazingActivist::Activity]
-    # @param message [#to_s, nil]
-    # @param exception [Exception, nil]
-    # @param context [#to_h]
-    def initialize(code, activity:, message:, exception:, context:)
-      @code      = code.to_sym
-      @activity  = activity
-      @message   = message&.to_s
-      @exception = exception
-      @context   = context.to_h
-    end
+    prop :message, _String?, reader: false
 
+    def code     = failure
     def success? = false
     def failure? = true
 
     # @api internal
     # @return [Array]
     def deconstruct
-      [:failure, @code, @activity]
+      [:failure, failure, activity]
     end
 
     # @api internal
     # @return [Hash]
     def deconstruct_keys(keys)
-      deconstructed = { failure: @code, activity: @activity, exception: exception, context: context }
-      deconstructed[:message] = message if keys.nil? || keys.include?(:message)
-
-      deconstructed
-    end
-
-    # @overload value_or(default)
-    #   @param default [Object]
-    #   @return [Object] default value
-    # @overload value_or(&block)
-    #   @yieldparam self [self]
-    #   @yieldreturn [Object] result of the block
-    # @raise [ArgumentError] if neither default value, nor block given
-    def value_or(default = UNDEFINED)
-      raise ArgumentError, "either default value, or block must be given" if default == UNDEFINED && !block_given?
-
-      unless default == UNDEFINED
-        return default unless block_given?
-
-        warn "block supersedes default value argument"
+      if keys.nil? || keys.include?(:message)
+        { failure:, activity:, exception:, context:, message: }
+      else
+        { failure:, activity:, exception:, context: }
       end
-
-      yield self
-    end
-
-    # @raise [UnwrapError]
-    def unwrap!
-      raise UnwrapError, self
     end
 
     # Failure message.
     #
     # @return [String]
     def message
-      @message || Polyglot.new(@activity).message(@code, **context)
+      @message || Polyglot.new(activity).message(failure, **context)
     end
   end
 end
