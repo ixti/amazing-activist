@@ -28,8 +28,11 @@ class ApplicationActivity < AmazingActivist::Base
 end
 
 class OnboardingActivity < ApplicationActivity
+  prop :email,    String
+  prop :password, String
+
   def call
-    user = User.new(params)
+    user = User.new(email:, password:)
 
     return failure(:invalid_params, user: user) unless user.save
 
@@ -39,10 +42,10 @@ end
 
 class UsersController < ApplicationController
   def create
-    case OnboardingActivity.call(**params.require(:user).permit(:password))
+    case OnboardingActivity.call(**params.require(:user).permit(:email, :password))
     in success: user
       redirect_to user_bashboard_url(user)
-    in failure: :invalid_params, context: { user: user }
+    in failure: :invalid_params, context: { user: }
       @user = user
       render :new
     else
