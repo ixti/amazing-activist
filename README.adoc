@@ -9,6 +9,10 @@ ifdef::env-github[]
 {codecov-url}[image:{codecov-img}[codecov]]
 endif::[]
 
+== Is it any good?
+
+https://news.ycombinator.com/item?id=3067434[Yes!]
+
 == Installation
 
 Add this line to your application's Gemfile:
