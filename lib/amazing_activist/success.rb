@@ -6,26 +6,25 @@ module AmazingActivist
 
     # @!attribute [r] success
     #   @return [AmazingActivist::Base]
-    prop :success, _Any?, :positional
+    prop :value, _Any?, :positional
 
     # @!attribute [r] activity
     #   @return [AmazingActivist::Base]
     prop :activity, AmazingActivist::Base
 
-    def value    = success
-    def success? = true
     def failure? = false
+    def success? = true
 
     # @api internal
     # @return [Array]
     def deconstruct
-      [:success, success, activity]
+      [:success, value, activity]
     end
 
     # @api internal
     # @return [Hash]
     def deconstruct_keys(_)
-      { success:, activity: }
+      { success: value, activity: }
     end
   end
 end

@@ -6,7 +6,7 @@ module AmazingActivist
 
     # @!attribute [r] failure
     #   @return failure [Symbol]
-    prop :failure, _Interface(:to_sym), :positional, &:to_sym
+    prop :code, _Interface(:to_sym), :positional, &:to_sym
 
     # @!attribute [r] activity
     #   @return [AmazingActivist::Base]
@@ -22,23 +22,22 @@ module AmazingActivist
 
     prop :message, _String?, reader: false
 
-    def code     = failure
-    def success? = false
     def failure? = true
+    def success? = false
 
     # @api internal
     # @return [Array]
     def deconstruct
-      [:failure, failure, activity]
+      [:failure, code, activity]
     end
 
     # @api internal
     # @return [Hash]
     def deconstruct_keys(keys)
       if keys.nil? || keys.include?(:message)
-        { failure:, activity:, exception:, context:, message: }
+        { failure: code, activity:, exception:, context:, message: }
       else
-        { failure:, activity:, exception:, context: }
+        { failure: code, activity:, exception:, context: }
       end
     end
 
@@ -46,7 +45,7 @@ module AmazingActivist
     #
     # @return [String]
     def message
-      @message || Polyglot.new(activity).message(failure, **context)
+      @message || Polyglot.new(activity).message(code, **context)
     end
   end
 end

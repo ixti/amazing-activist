@@ -27,11 +27,11 @@ module AmazingActivist
       if block_given?
         warn "block supersedes default value argument" unless default == UNDEFINED
 
-        return success if success?
+        return value if success?
 
         yield self
       elsif default != UNDEFINED
-        return success if success?
+        return value if success?
 
         default
       else
@@ -39,10 +39,12 @@ module AmazingActivist
       end
     end
 
+    alias success_or value_or
+
     # @return [Object] {#success} if outcome is {Success}
     # @raise [UnwrapError] otherwise
     def unwrap!
-      return success if success?
+      return value if success?
 
       raise UnwrapError, self
     end
