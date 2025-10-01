@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.10.0] - 2025-10-01
+
 ### Added
 
 - Add `success_or` alias for `value_or`
+
+### Removed
+
+- (BREAKING) Remove `Failure#failure` and `Sucess#success`
 
 
 ## [0.9.0] - 2025-05-28
@@ -124,7 +131,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/ixti/amazing-activist/compare/v0.9.0...main
+[Unreleased]: https://github.com/ixti/amazing-activist/compare/v0.10.0...main
+[0.10.0]: https://github.com/ixti/amazing-activist/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/ixti/amazing-activist/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/ixti/amazing-activist/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/ixti/amazing-activist/compare/v0.6.0...v0.7.0
