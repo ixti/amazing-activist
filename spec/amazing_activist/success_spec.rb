@@ -86,4 +86,10 @@ RSpec.describe AmazingActivist::Success do
       end
     end
   end
+
+  describe "#success_or" do
+    it "is an alias of #value_or" do
+      expect(outcome.method(:success_or)).to eq(outcome.method(:value_or))
+    end
+  end
 end
