@@ -39,7 +39,18 @@ module AmazingActivist
       end
     end
 
+    # @deprecated Will be removed in 1.0.0
     alias success_or value_or
+
+    def on_success
+      yield self if success?
+      self
+    end
+
+    def on_failure
+      yield self if failure?
+      self
+    end
 
     # @return [Object] {#success} if outcome is {Success}
     # @raise [UnwrapError] otherwise

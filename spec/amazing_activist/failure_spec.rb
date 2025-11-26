@@ -111,6 +111,26 @@ RSpec.describe AmazingActivist::Failure do
     end
   end
 
+  describe "#on_success" do
+    it "does not yield control" do
+      expect { |b| outcome.on_success(&b) }.not_to yield_control
+    end
+
+    it "returns itself" do
+      expect(outcome.on_success { nil }).to be outcome
+    end
+  end
+
+  describe "#on_failure" do
+    it "yields control" do
+      expect { |b| outcome.on_failure(&b) }.to yield_with_args(outcome)
+    end
+
+    it "returns itself" do
+      expect(outcome.on_failure { nil }).to be outcome
+    end
+  end
+
   describe "#message" do
     subject { outcome.message }
 
