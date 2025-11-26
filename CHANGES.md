@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `Outcome#on_failure` and `Outcome#on_success` helpers.
+
+
+### Changed
+
+- Deprecate `#success_or` alias
+
 
 ## [0.10.0] - 2025-10-01
 
