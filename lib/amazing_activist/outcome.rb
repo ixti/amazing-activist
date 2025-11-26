@@ -39,7 +39,7 @@ module AmazingActivist
       end
     end
 
-    # @deprecated Will be removes in 1.0.0
+    # @deprecated Will be removed in 1.0.0
     alias success_or value_or
 
     def on_success
